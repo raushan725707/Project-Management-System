@@ -1,39 +1,52 @@
 package com.example.project_managment_system.entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
+    @NotBlank
+    @Size(max = 255)
     private String name;
+    @NotBlank
+    @Size(max = 1000)
     private String description;
-    private Date startDate;
-    private Date endDate;
+    @NotNull
 
-    // Constructors, getters, and setters
+    private LocalDate startDate;
+    @NotNull
+
+    private LocalDate endDate;
+
 
     public Project() {
-        // Default constructor
     }
 
-    public Project(String name, String description, Date startDate, Date endDate) {
+    public Project(String name, String description, @NotNull LocalDate startDate, @NotNull LocalDate endDate) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    // Getters and setters for all attributes
 
-    public Long getId() {
+    public Project(int i, String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -53,19 +66,19 @@ public class Project {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public @NotNull LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(@NotNull LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public @NotNull LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(@NotNull LocalDate endDate) {
         this.endDate = endDate;
     }
 }
